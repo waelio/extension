@@ -138,6 +138,11 @@ chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
 
       case "FETCH_NPM": {
         const { name } = payload as { name: string };
+        // Request optional host permissions at runtime
+        const granted = await chrome.permissions.request({
+          origins: ["https://registry.npmjs.org/*", "https://api.npmjs.org/*"],
+        });
+        if (!granted) return { error: "Permission denied" };
         const [metaErr, metaResp] = await to(fetch(`https://registry.npmjs.org/${encodeURIComponent(name)}`));
         if (metaErr || !metaResp?.ok) return { error: metaErr?.message ?? "Failed" };
         const meta = await metaResp.json();
