@@ -21,8 +21,7 @@
   "host_permissions": [
     "https://waelio.com/*",
     "https://registry.npmjs.org/*",
-    "https://api.npmjs.org/*",
-    "http://localhost:*/*"
+    "https://api.npmjs.org/*"
   ],
   "background": {
     "service_worker": "dist/service-worker.js",
@@ -42,7 +41,7 @@
   },
   "content_scripts": [
     {
-      "matches": ["https://waelio.com/*", "http://localhost:*/*"],
+      "matches": ["https://waelio.com/*"],
       "js": ["dist/content.js"],
       "run_at": "document_idle"
     }
