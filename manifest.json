@@ -1,0 +1,51 @@
+{
+  "manifest_version": 3,
+  "name": "Waelio Toolkit",
+  "version": "0.1.0",
+  "description": "Browser companion for @waelio packages — storage, utils, notifications, and docs at your fingertips.",
+  "author": "Wael Wahbeh <waelio@waelio.com>",
+  "homepage_url": "https://waelio.com",
+  "icons": {
+    "16": "icons/icon-16.png",
+    "48": "icons/icon-48.png",
+    "128": "icons/icon-128.png"
+  },
+  "permissions": [
+    "activeTab",
+    "storage",
+    "contextMenus",
+    "sidePanel",
+    "notifications",
+    "alarms"
+  ],
+  "host_permissions": [
+    "https://waelio.com/*",
+    "https://registry.npmjs.org/*",
+    "https://api.npmjs.org/*",
+    "http://localhost:*/*"
+  ],
+  "background": {
+    "service_worker": "dist/service-worker.js",
+    "type": "module"
+  },
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_icon": {
+      "16": "icons/icon-16.png",
+      "48": "icons/icon-48.png",
+      "128": "icons/icon-128.png"
+    },
+    "default_title": "Waelio Toolkit"
+  },
+  "side_panel": {
+    "default_path": "sidepanel/panel.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://waelio.com/*", "http://localhost:*/*"],
+      "js": ["dist/content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "options_page": "options/options.html"
+}

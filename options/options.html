@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Waelio Toolkit – Settings</title>
+  <link rel="stylesheet" href="../styles/shared.css" />
+  <style>
+    body { max-width: 600px; margin: 2rem auto; padding: 0 1.5rem; }
+    h1 { font-size: 1.4rem; color: var(--text-strong); }
+    .opt-section { margin: 1.5rem 0; }
+    .opt-label { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.5rem; }
+    .opt-row { display: flex; align-items: center; justify-content: space-between; padding: 0.65rem 0; border-bottom: 1px solid var(--border); }
+    .opt-row:last-child { border-bottom: none; }
+    .opt-name { font-weight: 600; color: var(--text-strong); }
+    .opt-desc { font-size: 0.82rem; color: var(--text-muted); }
+    .opt-toggle { width: 36px; height: 20px; border-radius: 999px; border: none; background: var(--border); cursor: pointer; position: relative; transition: background 0.2s; }
+    .opt-toggle.active { background: var(--accent); }
+    .opt-toggle::after { content: ""; position: absolute; top: 2px; left: 2px; width: 16px; height: 16px; border-radius: 50%; background: white; transition: transform 0.2s; }
+    .opt-toggle.active::after { transform: translateX(16px); }
+    .opt-btn { padding: 0.5rem 1rem; border-radius: 8px; border: 1px solid var(--border); background: var(--surface); color: var(--text); font: inherit; cursor: pointer; }
+    .opt-btn:hover { border-color: var(--accent); background: var(--accent-soft); }
+    .opt-status { margin-top: 0.5rem; font-size: 0.82rem; color: var(--accent); }
+  </style>
+</head>
+<body>
+  <h1>🛠️ Waelio Toolkit Settings</h1>
+
+  <div class="opt-section">
+    <div class="opt-label">General</div>
+    <div class="opt-row">
+      <div>
+        <div class="opt-name">Notifications</div>
+        <div class="opt-desc">Show OS notifications for actions</div>
+      </div>
+      <button class="opt-toggle active" id="toggle-notifications"></button>
+    </div>
+    <div class="opt-row">
+      <div>
+        <div class="opt-name">Auto-refresh data</div>
+        <div class="opt-desc">Periodically refresh npm package data</div>
+      </div>
+      <button class="opt-toggle active" id="toggle-autorefresh"></button>
+    </div>
+  </div>
+
+  <div class="opt-section">
+    <div class="opt-label">Storage</div>
+    <div class="opt-row">
+      <div>
+        <div class="opt-name">Reset all storage</div>
+        <div class="opt-desc">Clear all uStore data in this extension</div>
+      </div>
+      <button class="opt-btn" id="btn-reset">Reset</button>
+    </div>
+    <div id="reset-status" class="opt-status"></div>
+  </div>
+
+  <div class="opt-section">
+    <div class="opt-label">About</div>
+    <div class="opt-row">
+      <div>
+        <div class="opt-name">Version</div>
+        <div class="opt-desc">0.1.0</div>
+      </div>
+      <a href="https://github.com/waelio/extension" target="_blank" rel="noreferrer" class="opt-btn">GitHub</a>
+    </div>
+    <div class="opt-row">
+      <div>
+        <div class="opt-name">Documentation</div>
+        <div class="opt-desc">Full API reference</div>
+      </div>
+      <a href="https://waelio.com/docs" target="_blank" rel="noreferrer" class="opt-btn">Docs</a>
+    </div>
+  </div>
+
+  <script type="module">
+    const toggles = {
+      "toggle-notifications": "notifications",
+      "toggle-autorefresh": "autoRefresh",
+    };
+
+    for (const [id, key] of Object.entries(toggles)) {
+      const btn = document.getElementById(id);
+      if (!btn) continue;
+
+      chrome.runtime.sendMessage({ type: "GET_CONFIG" }).then((config) => {
+        if (config[key] === false) btn.classList.remove("active");
+      });
+
+      btn.addEventListener("click", async () => {
+        btn.classList.toggle("active");
+        const value = btn.classList.contains("active");
+        await chrome.runtime.sendMessage({ type: "SET_CONFIG", payload: { key, value } });
+      });
+    }
+
+    document.getElementById("btn-reset")?.addEventListener("click", async () => {
+      await chrome.storage.local.clear();
+      await chrome.storage.session.clear();
+      const status = document.getElementById("reset-status");
+      if (status) status.textContent = "✅ Storage cleared";
+      setTimeout(() => { if (status) status.textContent = ""; }, 3000);
+    });
+  </script>
+</body>
+</html>

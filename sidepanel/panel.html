@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Waelio – Side Panel</title>
+  <link rel="stylesheet" href="../styles/shared.css" />
+  <link rel="stylesheet" href="panel.css" />
+</head>
+<body>
+  <div id="panel">
+    <header class="panel-header">
+      <h1 class="panel-title">🛠️ Waelio Toolkit</h1>
+    </header>
+
+    <nav class="panel-tabs" role="tablist">
+      <button class="panel-tab panel-tab-active" data-tab="packages" role="tab">Packages</button>
+      <button class="panel-tab" data-tab="storage" role="tab">Storage</button>
+      <button class="panel-tab" data-tab="utils" role="tab">Utils</button>
+    </nav>
+
+    <!-- Packages Tab -->
+    <section id="tab-packages" class="panel-content">
+      <div id="packages-list" class="panel-packages">
+        <div class="panel-loading">Loading packages…</div>
+      </div>
+    </section>
+
+    <!-- Storage Tab -->
+    <section id="tab-storage" class="panel-content" style="display:none;">
+      <div class="panel-storage-controls">
+        <select id="panel-backend" class="panel-select">
+          <option value="local">local</option>
+          <option value="session">session</option>
+          <option value="config">config (sync)</option>
+          <option value="memory">memory</option>
+        </select>
+        <button id="panel-refresh" class="panel-btn">🔄</button>
+      </div>
+      <div id="panel-storage-list" class="panel-storage-list">
+        <span class="panel-muted">Select a backend and refresh</span>
+      </div>
+      <div class="panel-storage-form">
+        <input id="panel-key" type="text" placeholder="Key" class="panel-input" />
+        <input id="panel-value" type="text" placeholder="Value" class="panel-input" />
+        <button id="panel-save" class="panel-btn panel-btn-accent">Set</button>
+      </div>
+    </section>
+
+    <!-- Utils Tab -->
+    <section id="tab-utils" class="panel-content" style="display:none;">
+      <input id="utils-search" type="text" placeholder="Search utilities…" class="panel-input panel-search" />
+      <div id="utils-list" class="panel-utils-list"></div>
+    </section>
+  </div>
+
+  <script type="module" src="../dist/sidepanel.js"></script>
+</body>
+</html>

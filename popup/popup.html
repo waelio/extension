@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Waelio Toolkit</title>
+  <link rel="stylesheet" href="../styles/shared.css" />
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <div id="popup">
+    <header class="popup-header">
+      <img src="../icons/icon-48.png" alt="waelio" class="popup-logo" />
+      <div>
+        <h1 class="popup-title">Waelio Toolkit</h1>
+        <span class="popup-version" id="version">v0.1.0</span>
+      </div>
+    </header>
+
+    <div class="popup-actions">
+      <button id="btn-docs" class="popup-btn popup-btn-primary">
+        📖 Open Docs
+      </button>
+      <button id="btn-sidepanel" class="popup-btn">
+        📋 Side Panel
+      </button>
+      <button id="btn-stats" class="popup-btn">
+        📊 Package Stats
+      </button>
+    </div>
+
+    <div class="popup-section">
+      <div class="popup-section-title">Quick Storage</div>
+      <div class="popup-storage-form">
+        <input id="store-key" type="text" placeholder="Key" class="popup-input" />
+        <input id="store-value" type="text" placeholder="Value" class="popup-input" />
+        <button id="btn-store" class="popup-btn popup-btn-accent">Save</button>
+      </div>
+      <div id="store-status" class="popup-status"></div>
+    </div>
+
+    <div class="popup-section">
+      <div class="popup-section-title">Storage Viewer</div>
+      <select id="storage-backend" class="popup-select">
+        <option value="local">localStorage</option>
+        <option value="session">sessionStorage</option>
+        <option value="config">configStorage (sync)</option>
+        <option value="memory">memoryStorage</option>
+      </select>
+      <div id="storage-contents" class="popup-storage-view">
+        <span class="popup-muted">Click "Load" to view contents</span>
+      </div>
+      <button id="btn-load-storage" class="popup-btn">🔄 Load</button>
+    </div>
+
+    <footer class="popup-footer">
+      <a href="https://waelio.com" target="_blank" rel="noreferrer">waelio.com</a>
+      <span class="popup-muted">·</span>
+      <a href="../options/options.html" target="_blank" rel="noreferrer">Settings</a>
+    </footer>
+  </div>
+
+  <script type="module" src="../dist/popup.js"></script>
+</body>
+</html>

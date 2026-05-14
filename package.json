@@ -1,0 +1,18 @@
+{
+  "name": "@waelio/extension",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Chrome Extension — browser companion for @waelio packages",
+  "author": "Wael Wahbeh <waelio@waelio.com> (https://waelio.com)",
+  "type": "module",
+  "scripts": {
+    "clean": "rm -rf dist",
+    "build": "npm run clean && tsc -p tsconfig.json",
+    "watch": "tsc -p tsconfig.json --watch",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "devDependencies": {
+    "@types/chrome": "^0.0.300",
+    "typescript": "^5.8.3"
+  }
+}
