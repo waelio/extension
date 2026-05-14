@@ -18,8 +18,7 @@
     "notifications",
     "alarms"
   ],
-  "host_permissions": [
-    "https://waelio.com/*",
+  "optional_host_permissions": [
     "https://registry.npmjs.org/*",
     "https://api.npmjs.org/*"
   ],
