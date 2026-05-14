@@ -14,6 +14,7 @@
     "deploy": "pnpm run build && pnpm run package"
   },
   "devDependencies": {
+    "@napi-rs/canvas": "^1.0.0",
     "@types/chrome": "^0.0.300",
     "typescript": "^5.8.3"
   }
