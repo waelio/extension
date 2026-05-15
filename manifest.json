@@ -2,6 +2,7 @@
   "manifest_version": 3,
   "name": "Waelio Toolkit",
   "version": "0.1.0",
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAlBrzU5MsQ2YQixlN+Jy4o2UW5hipfvmFpVsvO/YJ6JjIc1YKynIRXEo6HrjLKV8oMjCfWMEHQFwf54B79w5FFXnBkLoF3sAg+tnrfyfghwuwCddFaleM0+nypufbjhoRBZYBZi9mmmxAWgA8JdpG8LcmmC0c1Ok0Y41qhRON6cMKmBwv/+CPMVlQ29foW71GsewK1lSJJe8YAGz+dC4V6qqc7KvR5nzOgyvibKf6/b64XyGR28bZJDNfLx4X6kIOsikPZmnb1srjBi8C7MbkI0+CRk7DZnqx4RULQqkbwrGe4nDIIAqZEiGvAIAlPfKIX4tBg3cMry9jR8vt+DX86wIDAQAB",
   "description": "Browser companion for @waelio packages — storage, utils, notifications, and docs at your fingertips.",
   "author": "Wael Wahbeh <waelio@waelio.com>",
   "homepage_url": "https://waelio.com",
