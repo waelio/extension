@@ -1,7 +1,6 @@
 {
   "name": "@waelio/extension",
   "version": "0.1.0",
-  "private": true,
   "description": "Chrome Extension — browser companion for @waelio packages",
   "author": "Wael Wahbeh <waelio@waelio.com> (https://waelio.com)",
   "type": "module",
